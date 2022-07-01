@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>biblioteka qrafikov</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+</head>
+<body>
+    <button type="" id="btn-kiwi">Add KIWI 13</button>
+    <div id="chart"></div>
+    
+</body>
+</html>
+
+<script>
+    options = {
+        chart: {
+          type: "donut",
+        },
+        series: [44, 55, 13, 33],
+        labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
+    }
+
+    let chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+
+    let kiwi_btn = document.getElementById("btn-kiwi")
+    kiwi_btn.addEventListener('click', function(e) {
+        // alert("dd")
+        options["series"].push(10)
+        options["labels"].push("kiwi")
+
+        chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+
+        // console.log(options)
+
+    });
+</script>
