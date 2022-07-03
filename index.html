@@ -29,16 +29,26 @@
     chart.render();
 
     let kiwi_btn = document.getElementById("btn-kiwi")
+
     kiwi_btn.addEventListener('click', function(e) {
-        // alert("dd")
+        alert("1")
         options["series"].push(10)
         options["labels"].push("kiwi")
 
         chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
-
-
+        
         // console.log(options)
+    let test = ['Apple', 'Mango', 'Orange', 'Watermelon', 'kiwi'];
+
+    test.pop();
+    console.log(test);
+    if (test.includes('kiwi')) {
+        console.log('yes');
+    } 
+    else{
+        console.log('no');
+    }
 
     });
 </script>
