@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>biblioteka qrafikov</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
@@ -31,17 +32,16 @@
     let kiwi_btn = document.getElementById("btn-kiwi")
 
     kiwi_btn.addEventListener('click', function(e) {
-        alert("1")
-        options["series"].push(10)
+        options["series"].push(13)
         options["labels"].push("kiwi")
 
         chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
         
         // console.log(options)
+    kiwi_btn.disabled = true;
     let test = ['Apple', 'Mango', 'Orange', 'Watermelon', 'kiwi'];
 
-    test.pop();
     console.log(test);
     if (test.includes('kiwi')) {
         console.log('yes');
