@@ -11,44 +11,71 @@
 
 </head>
 <body>
-    <button type="" id="btn-kiwi">Add KIWI 13</button>
-    <div id="chart"></div>
-    
+    <button type="" class="btn-add" data-name="Kiwi" data-count="10">Add Kiwi 13</button>
+    <button type="" class="btn-add" data-name="Apple" data-count="15">Add Apple 13</button>
+    <button type="" class="btn-add" data-name="Mango" data-count="1">Add Mango 13</button>
+    <button type="" class="btn-add" data-name="Orange" data-count="20">Add Orange 13</button>
+    <button type="" class="btn-add" data-name="Watermelon" data-count="5">Add Watermelon 13</button>
+
+    <h5>Название продукта</h5>
+    <input type="text" name="" id="">
+    <h5>Количество</h5>
+    <input type="text">
+    <button>Добавить</button>
+
+    <div id="chart">
+    </div>
+
 </body>
+
 </html>
 
 <script>
     options = {
         chart: {
-          type: "donut",
+            type: "donut",
         },
-        series: [44, 55, 13, 33],
-        labels: ['Apple', 'Mango', 'Orange', 'Watermelon']
+        series: [],
+        labels: [],
+        // series: [44, 55, 13, 33],
+        // labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
+        plotOptions: {
+
+            pie: {
+                donut: {
+                    labels: {
+                        show: true,
+                    }
+                }
+            }
+        }
     }
 
-    let chart = new ApexCharts(document.querySelector("#chart"), options);
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
-    let kiwi_btn = document.getElementById("btn-kiwi")
 
-    kiwi_btn.addEventListener('click', function(e) {
-        options["series"].push(13)
-        options["labels"].push("kiwi")
+    $(document).on("click", ".btn-add", function() {
+        // alert("ssdsd")
+        // console.log($(this).attr("data-name"))
+        let nowElName = $(this).attr("data-name")
+        let nowElCount = $(this).attr("data-count")
+        nowElCount = Number(nowElCount)
 
-        chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-        
-        // console.log(options)
-    kiwi_btn.disabled = true;
-    let test = ['Apple', 'Mango', 'Orange', 'Watermelon', 'kiwi'];
+        if (options["labels"].includes(nowElName) == false) {
+            options["series"].push(nowElCount)
+            options["labels"].push(nowElName)
 
-    console.log(test);
-    if (test.includes('kiwi')) {
-        console.log('yes');
-    } 
-    else{
-        console.log('no');
-    }
+        } else {
+            let idxLabel = options["labels"].indexOf(nowElName)
+            options["series"][idxLabel] += nowElCount
+        }
 
+        // chart = new ApexCharts(document.querySelector("#chart"), options);
+        // chart.render();
+        chart.updateOptions(options)
     });
+
+
+
 </script>
