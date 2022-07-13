@@ -17,12 +17,13 @@
     <button type="" class="btn-add" data-name="Orange" data-count="20">Add Orange 13</button>
     <button type="" class="btn-add" data-name="Watermelon" data-count="5">Add Watermelon 13</button>
 
-    <h5>Название продукта</h5>
-    <input type="text" name="" id="">
-    <h5>Количество</h5>
-    <input type="text">
-    <button>Добавить</button>
-
+    <divc class="group">
+        <h5>Product name</h5>
+        <input type="text" id="product_name">
+        <h5>amount</h5>
+        <input type="number"id="amount" >
+        <button id="btn_addClick">Add</button> 
+    </divc>
     <div id="chart">
     </div>
 
@@ -75,7 +76,33 @@
         // chart.render();
         chart.updateOptions(options)
     });
+    let btn_addClick = document.getElementById("btn_addClick")
+    btn_addClick.addEventListener("click",function() {
+        let prooductName = document.getElementById("prooduct_name")
+        let amount = document.getElementById("amount")
+        let myNum = Number(amount);
 
+        if (options["labels"].includes(productName) == false) {
+            options["series"].push(amount.value)
+            options["labels"].push(productName.value)
+        } else {
+            let idxProductName = options["labels"].indexOf(prooductName)
+            options["series"][idxProductName] += amount
+        } 
+        productName.value = ""
+        amount.value = "" 
+        
+        chart.updateOptions(options)
 
+    });
+
+    // document.querySelector('button').addEventListener('click', myClick);
+    // function myClick(){
+    //     let a = document.querySelector('.i-1').value;
+    //     console.log(a);
+    //     document.querySelector('.out').innerHTML +=a;
+    // }
+
+    // $(document).on("click", ".btn-add", function()
 
 </script>
